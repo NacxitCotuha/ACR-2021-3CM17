@@ -1,6 +1,6 @@
 import socket
 
-HOST = "127.0.0.1"  # El hostname o IP del servidor
+HOST = "192.168.0.2"  # El hostname o IP del servidor
 PORT = 54321  # El puerto usado por el servidor
 msgFromClient = "Hello UDP Server"
 bytesToSend = str.encode(msgFromClient)
