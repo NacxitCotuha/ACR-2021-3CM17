@@ -1,7 +1,7 @@
-# Algoritmo para calcular los dias que he vivido hasta el 4 de febrero del 2020
+# Algoritmo para calcular los dias que he vivido hasta el 26 de agosto del 2021
 
-print("PROGRAMA PARA CALCULAR LOS DIAS VIVIDO HASTA EL 4 DE FEBRERO DEL 2020")
-fechaBase: tuple[int, int, int] = (4, 2, 2020)  # (dd, mm, aa) = 04/02/2020
+print("PROGRAMA PARA CALCULAR LOS DIAS VIVIDO HASTA EL 26 DE AGOSTO DEL 2021")
+fechaBase: tuple[int, int, int] = (26, 8, 2021)  # (dd, mm, aa) = 04/02/2020
 meses = (31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
 
 
@@ -74,7 +74,7 @@ def calcular_total_dias(dia, mes, anio) -> int:
     return total
 
 
-def practica1 (total_dias: int):
+def practica1(total_dias: int):
     print(f'''
 De acuerdo a la operacion R = totalDias % 3 donde las posibles opciones son:
     R = 0 -> Buscaminas

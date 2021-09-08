@@ -5,7 +5,10 @@ import time
 HOST = "192.168.0.2"  # Direccion de la interfaz de loopback estándar (localhost)
 PORT = 65432  # Puerto que usa el cliente  (los puertos sin provilegios son > 1023)
 buffer_size = 1024
-
+""" Forma analoga
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.close
+"""
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as TCPServerSocket:
     TCPServerSocket.bind((HOST, PORT))
     TCPServerSocket.listen()
@@ -17,9 +20,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as TCPServerSocket:
         while True:
             print("Esperando a recibir datos... ")
             data = Client_conn.recv(buffer_size)
-            print ("Recibido,", data,"   de ", Client_addr)
+            print("Recibido,", data, "   de ", Client_addr)
             if not data:
                 break
             print("Enviando respuesta a", Client_addr)
             Client_conn.sendall(data)
-
