@@ -49,7 +49,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as TCPServerSocket:
         while conexion:
             mensaje_env = f'''
 Buscaminas - MENU
-    1 - Nuevo Juego (Nivel Principiante), Tablero = 9 x 9, Minas = 40
+    1 - Nuevo Juego (Nivel Principiante), Tablero = 9 x 9, Minas = 10
     2 - Nuevo Juego (Nivel Avanzado), Tablero = 16 x 16, Minas = 40
     3 - Salir
 '''
