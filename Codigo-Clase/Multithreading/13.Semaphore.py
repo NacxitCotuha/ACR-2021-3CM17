@@ -25,11 +25,11 @@ def worker(s, pool):
     with s:
         name = threading.currentThread().getName()
         pool.makeActive(name)
-        time.sleep(0.1)
+        time.sleep(2)
         pool.makeInactive(name)
 
 pool = ActivePool()
 s = threading.Semaphore(2)
-for i in range(4):
+for i in range(100):
     t = threading.Thread(target=worker, name=str(i), args=(s, pool))
     t.start()

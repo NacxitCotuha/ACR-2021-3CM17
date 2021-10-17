@@ -3,9 +3,10 @@ import random
 import threading
 import time
 
-logging.basicConfig(level=logging.DEBUG,
-                    format='(%(threadName)-10s) %(message)s',
-                    )
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='(%(threadName)-10s) %(message)s',
+)
 
 
 class Counter(object):
@@ -24,7 +25,7 @@ class Counter(object):
 
 
 def worker(c):
-    for i in range(2):
+    for i__ in range(2):
         pause = random.random()
         logging.debug('Durmiendo %0.02f', pause)
         time.sleep(pause)

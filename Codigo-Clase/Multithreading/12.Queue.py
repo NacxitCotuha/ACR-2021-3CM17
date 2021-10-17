@@ -3,15 +3,19 @@ import time
 import queue
 import logging
 
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s (%(threadName)-2s) %(message)s')
-def consume(q):
-    while (True):
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s (%(threadName)-2s) %(message)s'
+)
 
-        item = q.get();
-        logging.debug("Consume el elemento %s de cola %d",item, q.qsize())
+
+def consume(q):
+    while True:
+
+        item = q.get()
+        logging.debug("Consume el elemento %s de cola %d", item, q.qsize())
         time.sleep(3)  # spend 3 seconds to process or consume the tiem
-        logging.debug("Termina el proceso. cola %d",q.qsize())
+        logging.debug("Termina el proceso. cola %d", q.qsize())
         q.task_done()
 
 
