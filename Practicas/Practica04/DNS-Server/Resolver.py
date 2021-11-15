@@ -1,7 +1,7 @@
 import socket
 import threading
 
-LIST_ADDR: list[tuple[str, int]] = []
+LIST_ADDR: list = []
 LIST_THREAD: list[threading.Thread] = []
 
 
