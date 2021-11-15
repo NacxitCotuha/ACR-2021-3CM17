@@ -3,7 +3,7 @@ import os
 import socket
 import sys
 import threading
-import time
+# import time
 
 from FTPServer import FTPServer
 
