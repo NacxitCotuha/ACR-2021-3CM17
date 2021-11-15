@@ -1,0 +1,14 @@
+{
+    "usuarios": [
+        {
+            "username": "nacxit",
+            "password": "admin123",
+            "directorio": "Archivos/Nacxit/"
+        },
+        {
+            "username": "cotuha",
+            "password": "admin666",
+            "directorio": "Archivos/Cotuha/"
+        }
+    ]
+}
