@@ -82,7 +82,7 @@ if __name__ == '__main__':
             NUM_CONN = 3
     except Exception as e:
         print(e)
-        print(f'Comando: python {sys.argv[0]} <HOST: str> <PORT: int> <NUM_CONN: int>')
+        print(f'Comando: python {sys.argv[0]} <PORT: int> <NUM_CONN: int>')
         sys.exit(1)
 
     print('Iniciando Servidor FTP'.center(100, '-'))
