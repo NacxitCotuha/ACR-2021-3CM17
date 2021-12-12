@@ -1,0 +1,94 @@
+syntax = "proto3";
+package practica05;
+
+service OperacionesDFS {
+  //VALIDACION
+  rpc ValidacionUsuario (SolicitudUsuario) returns (RespuestaUsuario) {}
+
+  //CREATE: Crea el Archivo de Texto
+  rpc CrearArchivo (SolicitudArchivo) returns (RespuestaArchivo) {}
+
+  //READ: Lee el archivo de texto
+  rpc LeerArchivo (SolicitudArchivo) returns (stream RespuestaLectura) {}
+
+  //WRITE: Escribe en el archivo de Texto
+  rpc EscrituraArchivo (SolicitudEscrituraArchivo) returns (RespuestaArchivo) {}
+  rpc EscrituraMultipleArchivo (stream SolicitudEscrituraArchivo) returns (RespuestaArchivo) {}
+
+  //REMOVE: Elimina el Archivo de Texto
+  rpc EliminarArchivo (SolicitudArchivo) returns (RespuestaArchivo) {}
+
+  //RENAME : renombra un fichero
+  rpc RenombrarArchivo (SolicitudModificarFichero) returns(RespuestaArchivo) {}
+
+  //MKDIR: Crear Nuevo SubDirectorio
+  rpc CrearDirectorio (SolicitudModificarDirectorio) returns (RespuestaModificarDirectorio) {}
+
+  //RMDIR: Eliminar SubDirectorios
+  rpc EliminarDirectorio (SolicitudModificarDirectorio) returns (RespuestaModificarDirectorio) {}
+
+  //READDIR: Ver la lista de directorios
+  rpc ListaDirectorios (SolicitudDirectorio) returns (stream RespuestaDirectorios) {}
+
+  //CD: cambiar de directorios
+  rpc CambiarDirectorio (SolicitudModificarDirectorio) returns (RespuestaModificarDirectorio) {}
+}
+
+message SolicitudUsuario {
+  string nombre = 1;
+  string password = 2;
+}
+
+message RespuestaUsuario {
+  string directorio_principal = 1;
+  string mensaje_validacion = 2;
+  bool acceso = 3;
+}
+
+message SolicitudArchivo {
+  string directorio_principal = 1;
+  string directorio_archivo = 2;
+  string nombre_archivo = 3;
+}
+
+message RespuestaArchivo {
+  string mensaje_completado = 1;
+  bool operacion_completada = 2;
+}
+
+message RespuestaLectura {
+  string datos_archivo = 1;
+}
+
+message SolicitudEscrituraArchivo {
+  string directorio_principal = 1;
+  string directorio_archivo = 2;
+  string nombre_archivo = 3;
+  string texto_escribir = 4;
+}
+
+message SolicitudModificarDirectorio {
+  string directorio_principal = 1;
+  string directorio_actual = 2;
+  string directorio_modificar = 3;
+}
+
+message RespuestaModificarDirectorio {
+  string mensaje_completado = 1;
+  bool operacion_completada = 2;
+}
+
+message SolicitudDirectorio {
+  string directorio_actual = 1;
+}
+
+message RespuestaDirectorios {
+  string informacion_directorio = 1;
+}
+
+message SolicitudModificarFichero {
+  string directorio_principal = 1;
+  string directorio_actual = 2;
+  string archivo_objetivo = 3;
+  string nombre_cambiar = 4;
+}
