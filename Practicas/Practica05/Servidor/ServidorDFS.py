@@ -155,11 +155,36 @@ def lista_directorios(directorio: str) -> str:
 def cambiar_directorio(directorio_principal: str,
                        directorio_actual: str,
                        directorio_modificar: str) -> tuple[str, bool]:
-    cambiar: tuple[str, bool]
-    path_completo = directorio_principal + directorio_actual + '/' + directorio_modificar
-    if os.path.isdir(path_completo):
-        cambiar = (directorio_actual + '/' + directorio_modificar, True)
-        return cambiar
+    cambiar_operacion: tuple[str, bool]
+    path_completo = directorio_principal + directorio_actual + directorio_modificar
+    if directorio_modificar == '...':
+        cambiar_operacion = ('', True)
+        return cambiar_operacion
+    elif directorio_modificar == '..':
+        if directorio_actual != '':
+            dividir_ruta = directorio_actual.split(sep='/', maxsplit=1024)
+            if len(dividir_ruta) <= 2:
+                cambiar_operacion = ('', True)
+                return cambiar_operacion
+            else:
+                ruta: str = ''
+                for carpeta_no in range(len(dividir_ruta)):
+                    if carpeta_no < (len(dividir_ruta) - 2):
+                        ruta += dividir_ruta[carpeta_no] + '/'
+                    else:
+                        break
+                if os.path.isdir(directorio_principal + ruta):
+                    cambiar_operacion = (ruta, True)
+                    return cambiar_operacion
+                else:
+                    cambiar_operacion = (f'Ha ocurrido un error al regresar a la ruta: [{ruta}]', True)
+                    return cambiar_operacion
+        else:
+            cambiar_operacion = ('Ya se encuentra en la raiz del su cuenta', False)
+            return cambiar_operacion
+    elif os.path.isdir(path_completo):
+        cambiar_operacion = (directorio_actual + directorio_modificar + '/', True)
+        return cambiar_operacion
     else:
         cambiar = (f'No se encontro el directorio [{directorio_modificar}]', False)
         return cambiar

@@ -99,6 +99,18 @@ class ClienteOperaciones:
             print(f'Hubo un Error: {response.mensaje_completado}')
         return
 
+    def comando_rename(self, archivo: str, cambiar: str) -> None:
+        response = self._stub.RenombrarArchivo(self._solicitud.SolicitudModificarFichero(
+            directorio_principal=self._datos['directorio_usuario'],
+            directorio_actual=self._datos['directorio_configurable'],
+            archivo_objetivo=archivo,
+            nombre_cambiar=cambiar))
+        if response.operacion_completada:
+            print(response.mensaje_completado)
+        else:
+            print(f'Hubo un Error: {response.mensaje_completado}')
+        return
+
     # Comando MKDIR: Crear Nuevo SubDirectorio
     def comando_mkdir(self, directorio: str):
         response = self._stub.CrearDirectorio(self._solicitud.SolicitudModificarDirectorio(
@@ -111,13 +123,26 @@ class ClienteOperaciones:
             print(f'Hubo un Error: {response.mensaje_completado}')
         return
 
-    def comando_rmdir(self, directorio: str):
+    # Comando RMDIR: Elimina un directorio y su contenido
+    def comando_rmdir(self, directorio: str) -> None:
         response = self._stub.EliminarDirectorio(self._solicitud.SolicitudModificarDirectorio(
             directorio_principal=self._datos['directorio_usuario'],
             directorio_actual=self._datos['directorio_configurable'],
             directorio_modificar=directorio))
         if response.operacion_completada:
             print(response.mensaje_completado)
+        else:
+            print(f'Hubo un Error: {response.mensaje_completado}')
+        return
+
+    # CD: Cambia de directorio
+    def comando_cd(self, directorio: str) -> None:
+        response = self._stub.CambiarDirectorio(self._solicitud.SolicitudModificarDirectorio(
+            directorio_principal=self._datos['directorio_usuario'],
+            directorio_actual=self._datos['directorio_configurable'],
+            directorio_modificar=directorio))
+        if response.operacion_completada:
+            self._datos['directorio_configurable'] = response.mensaje_completado
         else:
             print(f'Hubo un Error: {response.mensaje_completado}')
         return
@@ -176,6 +201,9 @@ def consola_dfs(cliente: ClienteOperaciones) -> None:
             if comando == 'READDIR':
                 cliente.comando_readdir()
                 continue
+            elif comando == 'CLEAR':
+                clear_console()
+                continue
             elif comando == 'MAN':
                 cliente.comando_man()
                 continue
@@ -207,8 +235,12 @@ def consola_dfs(cliente: ClienteOperaciones) -> None:
                 cliente.comando_rmdir(directorio=comando_dividido[1])
                 continue
             elif comando == 'CD':
+                cliente.comando_cd(directorio=comando_dividido[1])
                 continue
         elif len(comando_dividido) == 3:
+            comando = comando_dividido[0]
+            if comando == 'RENAME':
+                cliente.comando_rename(archivo=comando_dividido[1], cambiar=comando_dividido[2])
             continue
         else:
             print('Error de comando, el comando:')
