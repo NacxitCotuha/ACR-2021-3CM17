@@ -1,0 +1,17 @@
+Manual de comandos:
+> [comando] [objetivo] [edicion]
+
+comando (con [objetivo] y [edicion]):
+    RENAME: renombra un fichero.
+
+comando (con [objetivo], sin [edicion]):
+    CREATE: crea un nuevo archivo
+    READ y WRITE: primitivas basicas para acceder el fichero.
+    REMOVE: borra un fichero.
+    MKDIR y RMDIR: creacion/borrado de subdirectorios.
+    CD: cambiar de directorio
+
+comando (sin [objetivo] y [edicion]):
+    READDIR: para leer la lista de directorios.
+    MAN: Manual de comandos
+    EXIT: Desconectarse del servidor DFS
