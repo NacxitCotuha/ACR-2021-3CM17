@@ -1,0 +1,54 @@
+syntax = "proto3";
+package servidor_n;
+
+message ReqServidor {
+  string tipo = 1;
+}
+
+message ResServidor {
+  string host = 1;
+  int32 conexiones = 2;
+}
+
+message ReqConexion {
+  string ip = 1;
+}
+
+message ResConexion {
+  bool conexion = 1;
+  string mensaje = 2;
+}
+
+// El mensaje de solicitud contiene el nombre del usuario
+message ReqSaludo {
+  string nombre = 1;
+}
+
+// El mensaje de respuesta contiene el saludo
+message ResSaludo {
+  string saludo = 1;
+}
+
+// El mensaje contiene el resumen de la lista de saludos recibida0
+message ResResumenSaludo {
+  // Cuenta el número de nombres que se han recibido
+  int32 contador_nombres = 1;
+  // Cadena de respuesta con el saludo correspondiente
+  string saludo = 2;
+}
+
+
+
+service TransferData {
+  // Solicitud del Servidor - Balanceador
+  rpc ServidorConexiones (ReqServidor) returns (ResServidor) {}
+  //Solicitudes del Cliente - Balanceador
+  rpc ConexionExitosa (ReqConexion) returns (ResConexion) {}
+  // Saludos
+  rpc MensajeSaludo (ReqSaludo) returns (ResSaludo) {}
+  rpc MensajeSaludoVariosIdiomas (ReqSaludo) returns (stream ResSaludo) {}
+  rpc MensajeSaludoAmigos (stream ReqSaludo) returns (ResResumenSaludo) {}
+  rpc MensajeSaludoAmigosVariosIdiomas (stream ReqSaludo) returns (stream ResSaludo) {}
+  // Terminar Conexion
+  rpc RemoveConexion (ReqConexion) returns (ResConexion) {}
+}

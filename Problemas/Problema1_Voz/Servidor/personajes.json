@@ -1,0 +1,74 @@
+{
+    "pokemon": [
+        {
+            "nombre": "raichu",
+            "vuela": false,
+            "tipo": "electric",
+            "color": "yellow",
+            "debilidad": "ground"
+        },
+        {
+            "nombre": "charmander",
+            "vuela": false,
+            "tipo": "fire",
+            "color": "orange",
+            "debilidad": "water"
+        },
+        {
+            "nombre": "metapod",
+            "vuela": false,
+            "tipo": "bicho",
+            "color": "green",
+            "debilidad": "fire"
+        },
+        {
+            "nombre": "moltres",
+            "vuela": true,
+            "tipo": "fire",
+            "color": "yellow",
+            "debilidad": "water"
+        },
+        {
+            "nombre": "articuno",
+            "vuela": true,
+            "tipo": "ice",
+            "color": "blue",
+            "debilidad": "fire"
+        },
+        {
+            "nombre": "dratini",
+            "vuela": false,
+            "tipo": "dragon",
+            "color": "blue",
+            "debilidad": "ice"
+        },
+        {
+            "nombre": "vaporeon",
+            "vuela": false,
+            "tipo": "water",
+            "color": "blue",
+            "debilidad": "electric"
+        },
+        {
+            "nombre": "persian",
+            "vuela": false,
+            "tipo": "normal",
+            "color": "white",
+            "debilidad": "ghost"
+        },
+        {
+            "nombre": "flareon",
+            "vuela": false,
+            "tipo": "fire",
+            "color": "orange",
+            "debilidad": "water"
+        },
+        {
+            "nombre": "magmar",
+            "vuela": false,
+            "tipo": "fire",
+            "color": "orange",
+            "debilidad": "water"
+        }
+    ]
+}

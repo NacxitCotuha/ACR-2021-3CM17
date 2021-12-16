@@ -1,0 +1,14 @@
+syntax = "proto3";
+package balanceador;
+
+message ReqServidor {
+  string ip = 1;
+}
+
+message ResServidor {
+  string host_servidor = 1;
+}
+
+service  TransferData {
+  rpc ServidorN (ReqServidor) returns (ResServidor) {}
+}
